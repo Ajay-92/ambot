@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login with Math Problem</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #e0f7fa; /* Light blue background */
+        }
+        .login-form {
+            background: #ffffff; /* White background for the form */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            width: 100%;
+            border: 2px solid #0288d1; /* Blue border */
+        }
+        .login-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #0288d1; /* Blue color for the header */
+        }
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #0288d1; /* Blue border for inputs */
+        }
+        .login-form button {
+            padding: 10px;
+            background-color: #0288d1; /* Blue button background */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .login-form button:hover {
+            background-color: #0277bd; /* Darker blue on hover */
+        }
+        .error-message {
+            color: #d32f2f; /* Red color for the error message */
+            display: none;
+        }
+        .redirect-link {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .redirect-link a {
+            color: #0288d1; /* Blue color for the link */
+            text-decoration: none;
+        }
+        .redirect-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-form">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <div id="math-question"></div>
+        <input type="text" id="math-answer" placeholder="Answer">
+        <div class="error-message" id="error-message">Incorrect answer. Please try again.</div>
+        <button onclick="validateLogin()">Login</button>
+        <div class="redirect-link" id="redirect-link">
+            <p>Click <a href="https://www.youtube.com/watch?v=8wsBIGxqbQ8&t=148s&pp=ygUeZGF5bGlnaHQgYnkgcmViZWNjYSBhcm1zdHJvbmcg" target="_blank">here</a> to watch a video!</p>
+        </div>
+    </div>
+
+    <script>
+        // Generate a Simple Math Problem
+        let num1 = Math.floor(Math.random() * 10) + 1;
+        let num2 = Math.floor(Math.random() * 10) + 1;
+        let correctAnswer = num1 + num2;
+
+        document.getElementById('math-question').innerText = `What is ${num1} + ${num2}?`;
+
+        // Validate the Login
+        function validateLogin() {
+            let username = document.getElementById('username').value;
+            let password = document.getElementById('password').value;
+            let userAnswer = parseInt(document.getElementById('math-answer').value);
+
+            if (userAnswer === correctAnswer) {
+                document.querySelector('.login-form').style.display = 'none';
+                document.getElementById('redirect-link').style.display = 'block';
+                
+                // Optional: Automatically redirect after 5 seconds
+                setTimeout(() => {
+                    window.location.href = 'https://www.youtube.com/watch?v=8wsBIGxqbQ8&t=148s&pp=ygUeZGF5bGlnaHQgYnkgcmViZWNjYSBhcm1zdHJvbmcg';
+                }, 5000); // Change 5000 to the number of milliseconds you want (5000ms = 5 seconds)
+            } else {
+                document.getElementById('error-message').style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+</html>
